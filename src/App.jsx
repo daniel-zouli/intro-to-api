@@ -15,12 +15,22 @@ function App() {
   async function loadCountryData(countryName) {
     setLoading(true);
     setError(null);
+    setCountry(null);
 
     try {
       const countryData = await fetchCountryData(countryName);
+
+      // If no data returned (empty array or undefined)
+      if (!countryData) {
+        setError("No country detected 😢");
+        return;
+      }
+
       setCountry(countryData);
     } catch (err) {
-      setError(err.message);
+      // Generic user‑friendly error
+      setError("Error loading data ❌");
+      console.error("Fetch failed:", err);
     } finally {
       setLoading(false);
     }
@@ -29,14 +39,21 @@ function App() {
   return (
     <div className="container">
       <h1>Country Information</h1>
+
       <div className="result-container">
         {loading && <p className="loading">Loading country data...</p>}
+
         {error && (
           <div className="error">
-            <strong>Error:</strong> Could not load data 😢
+            <strong>{error}</strong>
           </div>
         )}
-        {country && !loading && !error && <CountryCard country={country} />}
+
+        {!loading && !error && !country && (
+          <p className="no-data">No country data available 🗺️</p>
+        )}
+
+        {!loading && country && !error && <CountryCard country={country} />}
       </div>
     </div>
   );
