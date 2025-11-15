@@ -1,6 +1,6 @@
 // Function to fetch country data from API
 async function fetchCountryData(countryName) {
- const apiUrl = `https://restcountries.com/v3/name/$(countryName)`;
+ const apiUrl = `https://restcountries.com/v3/name/${countryName}`;
 
  const response = await fetch(apiUrl);
     if (!response.ok) {
