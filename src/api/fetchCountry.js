@@ -1,4 +1,7 @@
 // Function to fetch country data from API
-export async function fetchCountryData(countryName) {
+async function fetchCountryData(countryName) {
+    // 1. Build API URL
   
-}
+  }
+  
+  export default fetchCountryData;

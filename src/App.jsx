@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchCountryData } from "./api/fetchCountry";
+import fetchCountryData from "./api/fetchCountry";
 import CountryCard from "./components/CountryCard";
 import "../styles.css";
 
